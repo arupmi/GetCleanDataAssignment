@@ -5,6 +5,19 @@ This is the submission for the Programming Assignment for the Coursera Getting &
 
 Author: Arup Mitra
 
+PREREQUISITES FOR RUNNING the code
+-----------------------------------
+1. All the data files should be in the working directory of R.
+2. Source the run_analysis.R code in R. 
+2. For reading the final output, in RStudio, please use:
+
+    mydata <- read.table("FinalCleanData.txt", header = TRUE)
+
+    View(mydata)
+
+
+PROGRAM LOGIC
+---------------
 The program begins by reading in the test & training data + label files into corresponding 
 data sets as detailed in the in-line comments provided in the code.
 
@@ -24,12 +37,8 @@ abbreviated column names and replacing them with expanded words.
 
 At the end, the data frame is written into a file "FinalCleanData.txt"
 
-The program was developed in RStudio, and you may source the file to execute it.
 
-For reading the final output, in RStudio, please use:
 
-mydata <- read.table("FinalCleanData.txt", header = TRUE)
 
-View(mydata)
 
 
