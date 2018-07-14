@@ -6,14 +6,14 @@
 ##Read the "test" data into data frame test tab
 ##Read the "test" labels into data frame testlabel
 
-testtab<-read.table(".\\UCI HAR Dataset\\test\\X_test.txt",header=FALSE)
-testlabel<-read.table(".\\UCI HAR Dataset\\test\\y_test.txt",header=FALSE)
+testtab<-read.table("X_test.txt",header=FALSE)
+testlabel<-read.table("y_test.txt",header=FALSE)
 
 ## Read the "train" data into dataframe traintab
 ## Read the "train" labels into dataframe trainlabel
 
-traintab<-read.table(".\\UCI HAR Dataset\\train\\X_train.txt",header=FALSE)
-trainlabel<-read.table(".\\UCI HAR Dataset\\train\\y_train.txt",header=FALSE)
+traintab<-read.table("X_train.txt",header=FALSE)
+trainlabel<-read.table("y_train.txt",header=FALSE)
 
 ## In this section the processing begins!!
 
@@ -24,8 +24,7 @@ mergedata<-rbind(testtab,traintab)
 ## We read in the list of features - this is then used as the column names 
 ## for the merged data
 
-featuresdata<-read.table(".\\UCI HAR Dataset\\features.txt",
-                         header=FALSE,stringsAsFactors = FALSE)
+featuresdata<-read.table("features.txt", header=FALSE,stringsAsFactors = FALSE)
 
 colnames(mergedata)<-featuresdata[,2]
 
@@ -35,10 +34,8 @@ mergelabel<-rbind(testlabel,trainlabel)
 ## We load the subject data into data frame subjecttest and subjecttrain 
 ## for test and training data respectively
 
-subjecttest<-read.table(".\\UCI HAR Dataset\\test\\subject_test.txt",
-                        header=FALSE)
-subjecttrain<-read.table(".\\UCI HAR Dataset\\train\\subject_train.txt",
-                         header=FALSE)
+subjecttest<-read.table("subject_test.txt", header=FALSE)
+subjecttrain<-read.table("subject_train.txt", header=FALSE)
 
 ## Just like above, we append the training subject data to the end of the test data
 ## Then include the subject data as a column into the merged subject data
@@ -59,8 +56,7 @@ meanstddata<-fulldata[ ,
         c(1,2,grep( "mean|std" , names(fulldata), value = FALSE)) ]
 
 ## Read in the activity labels into a data frame
-activitylabel<-read.table(".\\UCI HAR Dataset\\activity_labels.txt",
-                          header=FALSE, stringsAsFactors = FALSE)
+activitylabel<-read.table("activity_labels.txt",header=FALSE, stringsAsFactors = FALSE)
 
 ## Now join the two data frames to provide the descriptive Activity label
 labelledstdmean<-merge(activitylabel,meanstddata,by.x="V1", by.y="Activity")
@@ -116,4 +112,4 @@ colnames(meandata)<-gsub("fBody",
                         names(meandata))
 
 ## AND FINALLY - writing the data frame to the file FinalCleanData.txt
-write.table(meandata,"FinalCleanData.txt")
+write.table(meandata,"FinalCleanData.txt", row.name=FALSE)
