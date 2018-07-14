@@ -29,6 +29,7 @@ The program was developed in RStudio, and you may source the file to execute it.
 For reading the final output, in RStudio, please use:
 
 mydata <- read.table("FinalCleanData.txt", header = TRUE)
+
 View(mydata)
 
 
